@@ -123,6 +123,7 @@ const InvoiceModal = ({
                   INVOICE
                 </h1>
                 <div className="mt-6">
+                  <img src={invoiceInfo.image} className='w-20 h-20'/>
                   <div className="mb-4 grid grid-cols-2">
                     <span className="font-bold">Invoice Number:</span>
                     <span>{invoiceInfo.invoiceNumber}</span>
@@ -130,6 +131,10 @@ const InvoiceModal = ({
                     <span>{invoiceInfo.cashierName}</span>
                     <span className="font-bold">Customer:</span>
                     <span>{invoiceInfo.customerName}</span>
+                    <span className="font-bold">Date:</span>
+                    <span>{invoiceInfo.dateval}</span>
+                    <span className='font-bold'>Due date:</span>
+                    <span>{invoiceInfo.duedateval}</span>
                   </div>
 
                   <table className="w-full text-left">
@@ -149,33 +154,39 @@ const InvoiceModal = ({
                             {item.qty}
                           </td>
                           <td className="min-w-[80px] text-right">
-                            ${Number(item.price).toFixed(2)}
+                          {invoiceInfo.curval}{Number(item.price).toFixed(2)}
                           </td>
                           <td className="min-w-[90px] text-right">
-                            ${Number(item.price * item.qty).toFixed(2)}
+                          {invoiceInfo.curval}{Number(item.price * item.qty).toFixed(2)}
                           </td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
-
+                        <div >
+                          <span className='font-bold'>Note:</span>
+                          <span>{invoiceInfo.notescon}</span>
+                          <br/>
+                          <span className='font-bold'>Term:</span>
+                          <span>{invoiceInfo.termscon}</span>
+                        </div>
                   <div className="mt-4 flex flex-col items-end space-y-2">
                     <div className="flex w-full justify-between border-t border-black/10 pt-2">
                       <span className="font-bold">Subtotal:</span>
-                      <span>${invoiceInfo.subtotal.toFixed(2)}</span>
+                      <span>{invoiceInfo.curval}{invoiceInfo.subtotal.toFixed(2)}</span>
                     </div>
                     <div className="flex w-full justify-between">
                       <span className="font-bold">Discount:</span>
-                      <span>${invoiceInfo.discountRate.toFixed(2)}</span>
+                      <span>{invoiceInfo.curval}{invoiceInfo.discountRate.toFixed(2)}</span>
                     </div>
                     <div className="flex w-full justify-between">
                       <span className="font-bold">Tax:</span>
-                      <span>${invoiceInfo.taxRate.toFixed(2)}</span>
+                      <span>{invoiceInfo.curval}{invoiceInfo.taxRate.toFixed(2)}</span>
                     </div>
                     <div className="flex w-full justify-between border-t border-black/10 py-2">
                       <span className="font-bold">Total:</span>
                       <span className="font-bold">
-                        $
+                        {invoiceInfo.curval}
                         {invoiceInfo.total % 1 === 0
                           ? invoiceInfo.total
                           : invoiceInfo.total.toFixed(2)}
@@ -186,7 +197,7 @@ const InvoiceModal = ({
               </div>
               <div className="mt-4 flex space-x-2 px-4 pb-6">
                 <button
-                  className="flex w-full items-center justify-center space-x-1 rounded-md border border-blue-500 py-2 text-sm text-blue-500 shadow-sm hover:bg-blue-500 hover:text-white"
+                  className="flex w-full i  tems-center justify-center space-x-1 rounded-md border border-blue-500 py-2 text-sm text-blue-500 shadow-sm hover:bg-blue-500 hover:text-white"
                   onClick={SaveAsPDFHandler}
                 >
                   <svg

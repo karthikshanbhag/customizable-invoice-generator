@@ -1,17 +1,18 @@
 import React from "react";
 import InvoiceField from "./InvoiceField";
 
-const InvoiceItem = ({ id, name, qty, price, onDeleteItem, onEdtiItem }) => {
+const InvoiceItem = ({ id, name, qty, price, onDeleteItem, onEdtiItem,cur }) => {
   const deleteItemHandler = () => {
     onDeleteItem(id);
   };
 
   return (
     <tr>
-      <td className="w-full">
+      <td className="w-full ">
         <InvoiceField
           onEditItem={(event) => onEdtiItem(event)}
           cellData={{
+            className: "rounded bg-white ring-1 ring-gray-300 hover:ring-gray-400 hover:ring-1 hover:shadow-md focus:border-teal-700 focus:ring-1 focus:ring-teal-600 focus:outline-none",
             placeholder: "Item name",
             type: "text",
             name: "name",
@@ -24,6 +25,7 @@ const InvoiceItem = ({ id, name, qty, price, onDeleteItem, onEdtiItem }) => {
         <InvoiceField
           onEditItem={(event) => onEdtiItem(event)}
           cellData={{
+            className: "rounded bg-white ring-1 ring-gray-300 hover:ring-gray-400 hover:ring-1 hover:shadow-md focus:border-teal-700 focus:ring-1 focus:ring-teal-600 focus:outline-none",
             type: "number",
             min: "1",
             name: "qty",
@@ -48,11 +50,11 @@ const InvoiceItem = ({ id, name, qty, price, onDeleteItem, onEdtiItem }) => {
           />
           <path d="M12 3v3m0 12v3" />
         </svg>
-       
+       {/* <span>{cur}</span> */}
         <InvoiceField
           onEditItem={(event) => onEdtiItem(event)}
           cellData={{
-            className: "text-right",
+            className: "text-right rounded bg-white ring-1 ring-gray-300 hover:ring-gray-400 hover:ring-1 hover:shadow-md focus:border-teal-700 focus:ring-1 focus:ring-teal-600 focus:outline-none",
             type: "number",
             min: "0.01",
             step: "0.01",

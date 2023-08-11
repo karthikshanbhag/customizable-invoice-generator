@@ -19,11 +19,11 @@ const InvoiceForm = () => {
       col4: "Amount",
     },
   ]);
+  const options = ['Rs', '€', '£', '¥'];
   const [stval,setStval] = useState('')
   const [ptval,setPtval] = useState('')
   const [poval,setPoval] = useState('')
-  const options = ['Rs', '€', '£', '¥'];
-  const [curval,setCurval] = useState('$')
+  const [curval,setCurval] = useState(options[0])
   const [image, setImage] = useState("");
   const [notescon, setNotescon] = useState("");
   const [termscon, setTermscon] = useState("");
@@ -198,7 +198,7 @@ const InvoiceForm = () => {
             <div className="pt-4 pb-8">
               <input
                 required
-                className="max-w-[300px] flex-1 pb-8 shadow-md"
+                className="max-w-[300px] flex-1 pb-8 rounded bg-white ring-1 ring-gray-300 hover:ring-gray-400 hover:ring-1 hover:shadow-md focus:border-teal-700 focus:ring-1 focus:ring-teal-600 focus:outline-none"
                 placeholder="who is the invoice from?(required)"
                 type="text"
                 name="cashierName"
@@ -231,7 +231,7 @@ const InvoiceForm = () => {
 
                   <input
                     required
-                    className="w-[150px] flex-1 pb-10 shadow-md"
+                    className="w-[150px] flex-1 pb-10 rounded bg-white ring-1 ring-gray-300 hover:ring-gray-400 hover:ring-1 hover:shadow-md focus:border-teal-700 focus:ring-1 focus:ring-teal-600 focus:outline-none"
                     placeholder="Customer name"
                     type="text"
                     name="customerName"
@@ -261,7 +261,7 @@ const InvoiceForm = () => {
                   )}
                   <input
                     required
-                    className="w-[150px] flex-1 pb-10 shadow-md"
+                    className="w-[150px] flex-1 pb-10 rounded bg-white ring-1 ring-gray-300 hover:ring-gray-400 hover:ring-1 hover:shadow-md focus:border-teal-700 focus:ring-1 focus:ring-teal-600 focus:outline-none"
                     placeholder="Customer name"
                     type="text"
                     name="customerName"
@@ -295,11 +295,11 @@ const InvoiceForm = () => {
                     {invoice}
                   </label>
                 )}
-                <div className="pl-30 flex">
+                <div className="pl-30 flex ">
                   <p className="w-10 bg-gray-300 p-1 text-center">#</p>
                   <input
                     required
-                    className=" max-w-[130px] cursor-pointer shadow-md"
+                    className=" max-w-[130px] cursor-pointer rounded bg-white ring-1 ring-gray-300 hover:ring-gray-400 hover:ring-1 hover:shadow-md focus:border-teal-700 focus:ring-1 focus:ring-teal-600 focus:outline-none"
                     type="number"
                     name="invoiceNumber"
                     id="invoiceNumber"
@@ -336,8 +336,10 @@ const InvoiceForm = () => {
 
                   <input
                     required
-                    className="curser-pointer hover: max-w-[130px] border border-gray-700 shadow-md "
+                    className="curser-pointer hover: max-w-[130px] border border-gray-700 rounded bg-white ring-1 ring-gray-300 hover:ring-gray-400 hover:ring-1 hover:shadow-md focus:border-teal-700 focus:ring-1 focus:ring-teal-600 focus:outline-none "
                     type="date"
+                    datepicker
+                    placeholder="Date"
                     name="invoiceNumber"
                     id="invoiceNumber"
                     min="1"
@@ -373,7 +375,7 @@ const InvoiceForm = () => {
 
                   <input
                     required
-                    className="relative ml-0 mt-2 max-w-[130px] shadow-md"
+                    className="relative ml-0 mt-2 max-w-[130px] rounded bg-white ring-1 ring-gray-300 hover:ring-gray-400 hover:ring-1 hover:shadow-md focus:border-teal-700 focus:ring-1 focus:ring-teal-600 focus:outline-none"
                     type="number"
                     name="invoiceNumber"
                     id="invoiceNumber"
@@ -405,7 +407,7 @@ const InvoiceForm = () => {
                   )}
                   <input
                     required
-                    className="mt-2 max-w-[130px] shadow-md"
+                    className="mt-2 max-w-[130px] rounded bg-white ring-1 ring-gray-300 hover:ring-gray-400 hover:ring-1 hover:shadow-md focus:border-teal-700 focus:ring-1 focus:ring-teal-600 focus:outline-none"
                     type="date"
                     name="invoiceNumber"
                     id="invoiceNumber"
@@ -438,7 +440,7 @@ const InvoiceForm = () => {
 
                   <input
                     required
-                    className="mt-2 max-w-[130px] shadow-md"
+                    className="mt-2 max-w-[130px] rounded bg-white ring-1 ring-gray-300 hover:ring-gray-400 hover:ring-1 hover:shadow-md focus:border-teal-700 focus:ring-1 focus:ring-teal-600 focus:outline-none"
                     type="number"
                     name="invoiceNumber"
                     id="invoiceNumber"
@@ -527,6 +529,7 @@ const InvoiceForm = () => {
                 price={item.price}
                 onDeleteItem={deleteItemHandler}
                 onEdtiItem={edtiItemHandler}
+                cur={curval}
               />
             ))}
           </tbody>
@@ -578,7 +581,7 @@ const InvoiceForm = () => {
               )}
               <input
                 required
-                className="w-[430px] flex-1 pb-10 shadow-md"
+                className="w-[430px] flex-1 pb-10 rounded bg-white ring-1 ring-gray-300 hover:ring-gray-400 hover:ring-1 hover:shadow-md focus:border-teal-700 focus:ring-1 focus:ring-teal-600 focus:outline-none"
                 placeholder="Notes - any relevant information not already covered"
                 type="text"
                 name="customerName"
@@ -591,7 +594,7 @@ const InvoiceForm = () => {
               />
             </div>
             <br />
-            <div className="flex flex-col">
+            <div className="flex flex-col ">
               {showTerms ? (
                 <input
                   className=" h-auto bg-transparent p-0 font-thin text-black"
@@ -612,7 +615,7 @@ const InvoiceForm = () => {
               )}
               <input
                 required
-                className="w-[430px] flex-1 pb-10 shadow-md "
+                className="w-[430px] flex-1 pb-10 rounded bg-white ring-1 ring-gray-300 hover:ring-gray-400 hover:ring-1 hover:shadow-md focus:border-teal-700 focus:ring-1 focus:ring-teal-600 focus:outline-none"
                 placeholder="Terms and conditions - late fees, payment methods"
                 type="text"
                 name="term"
@@ -642,7 +645,7 @@ const InvoiceForm = () => {
                   </label>
                   <div className="flex items-center">
                     <input
-                      className="w-full rounded-r-none bg-white shadow-sm"
+                      className="w-full rounded bg-white ring-1 ring-gray-300 hover:ring-gray-400 hover:ring-1 hover:shadow-md focus:border-teal-700 focus:ring-1 focus:ring-teal-600 focus:outline-none"
                       type="number"
                       name="discount"
                       id="discount"
@@ -695,7 +698,7 @@ const InvoiceForm = () => {
                   </label>
                   <div className="flex items-center">
                     <input
-                      className="w-full rounded-r-none bg-white shadow-sm"
+                      className="w-full rounded bg-white ring-1 ring-gray-300 hover:ring-gray-400 hover:ring-1 hover:shadow-md focus:border-teal-700 focus:ring-1 focus:ring-teal-600 focus:outline-none"
                       type="number"
                       name="tax"
                       id="tax"
@@ -762,15 +765,16 @@ const InvoiceForm = () => {
       <div className="basis-1/4 bg-transparent">
         <div className="sticky top-0 z-10 space-y-4 divide-y divide-gray-900/10 pb-8 md:pt-6 md:pl-4">
           <button
-            className="w-full rounded-md bg-blue-500 py-2 text-sm text-white shadow-sm hover:bg-blue-600"
+            className="w-full rounded-md bg-teal-600 py-2 text-sm text-white shadow-sm hover:bg-teal-700"
             type="submit"
           >
-            Review Invoice
+            Download Invoice
           </button>
           <InvoiceModal
             isOpen={isOpen}
             setIsOpen={setIsOpen}
             invoiceInfo={{
+              image,
               invoiceNumber,
               cashierName,
               customerName,
@@ -778,6 +782,11 @@ const InvoiceForm = () => {
               taxRate,
               discountRate,
               total,
+              dateval,
+              duedateval,
+              termscon,
+              notescon,
+              curval,
             }}
             items={items}
             onAddNextInvoice={addNextInvoiceHandler}
@@ -787,7 +796,7 @@ const InvoiceForm = () => {
               CURRENCY
             </label>
             <select
-              id="countries" onChange={changecur} className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+              id="countries" onChange={changecur} className="block w-full rounded  bg-white p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 ring-1 ring-gray-300 hover:ring-gray-400 hover:ring-1 hover:shadow-md focus:ring-1 focus:outline-none"
             >
               <option>$</option>
                     {options.map((option, index) => {
