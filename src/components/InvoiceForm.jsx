@@ -137,8 +137,90 @@ const InvoiceForm = () => {
   };
 
   const changecur = (event) =>{
-    setCurval(event.target.value)
-    console.log(curval)
+    if(event.target.value === 'dol ($)'){
+      setCurval('$')
+      return
+    }
+    if(event.target.value === 'EUR (€)'){
+      setCurval('€')
+      return
+    }
+    if(event.target.value === 'CHF (CHF)'){
+      setCurval('CHF')
+      return
+    }
+    if(event.target.value === 'CAD (C$)'){
+      setCurval('C$')
+      return
+    }
+    if(event.target.value === 'INR (₹)'){
+      setCurval('₹')
+      return
+    }
+    if(event.target.value === 'GBP (£)'){
+      setCurval('£')
+      return
+    }
+    if(event.target.value === 'AUD (A$)'){
+      setCurval('A$')
+      return
+    }
+    if(event.target.value === 'JPY (¥)'){
+      setCurval('¥')
+      return
+    }
+    if(event.target.value === 'CNY (¥)'){
+      setCurval('¥')
+      return
+    }
+    if(event.target.value === 'NZD (NZ$)'){
+      setCurval('NZ$')
+      return
+    }
+    if(event.target.value === 'RUB (₽)'){
+      setCurval('₽')
+      return
+    }
+    if(event.target.value === 'TRY (₺)'){
+      setCurval('₺')
+      return
+    }
+    if(event.target.value === 'BRL (R$)'){
+      setCurval('R$')
+      return
+    }
+    if(event.target.value === 'ZAR (R)'){
+      setCurval('R')
+      return
+    }
+    if(event.target.value === 'SGD (S$)'){
+      setCurval('S$')
+      return
+    }
+    if(event.target.value === 'SEK (kr)'){
+      setCurval('kr')
+      return
+    }
+    if(event.target.value === 'NOK (kr)'){
+      setCurval('kr')
+      return
+    }
+    if(event.target.value === 'DKK (kr)'){
+      setCurval('kr')
+      return
+    }
+    if(event.target.value === 'PLN (zł)'){
+      setCurval('zł')
+      return
+    }
+    if(event.target.value === 'HKD (HK$)'){
+      setCurval('HK$')
+      return
+    }
+    if(event.target.value === 'MEX (Mex$)'){
+      setCurval('Mex$')
+      return
+    }
   }
 
   const changetype = (event) =>{
@@ -174,7 +256,7 @@ const InvoiceForm = () => {
 
   return (
     <form
-      className="relative flex flex-col px-2 md:flex-row"
+      className="relative flex flex-col ring-1 ring-gray-500 px-10 md:flex-row"
       onSubmit={reviewInvoiceHandler}
     >
       <div className="my-6 flex-1 space-y-2  rounded-md bg-white p-4 shadow-sm sm:space-y-4 md:p-6">
@@ -208,10 +290,10 @@ const InvoiceForm = () => {
             </div>
             {/* image end */}
 
-            <div className="pt-4 pb-8">
+            <div style={{width:"450px"}} className="pt-4 pb-8">
               <input
                 required
-                className="max-w-[300px] flex-1 pb-8 rounded bg-white ring-1 ring-gray-300 hover:ring-gray-400 hover:ring-1 hover:shadow-md focus:border-teal-700 focus:ring-1 focus:ring-teal-600 focus:outline-none"
+                className="max-w-[280px] flex-1 pb-8 rounded bg-white ring-1 ring-gray-300 hover:ring-gray-400 hover:ring-1 hover:shadow-md focus:border-teal-700 focus:ring-1 focus:ring-teal-600 focus:outline-none"
                 placeholder="who is the invoice from?(required)"
                 type="text"
                 name="cashierName"
@@ -225,7 +307,7 @@ const InvoiceForm = () => {
                 <div className="flex flex-col">
                   {showBillto ? (
                     <input
-                      className=" h-auto bg-transparent p-0 font-thin text-black"
+                      className="h-auto bg-transparent p-0 font-thin text-black"
                       type="text"
                       value={billto}
                       onChange={(e) => setBillto(e.target.value)}
@@ -244,7 +326,7 @@ const InvoiceForm = () => {
 
                   <input
                     required
-                    className="w-[150px] flex-1 pb-10 rounded bg-white ring-1 ring-gray-300 hover:ring-gray-400 hover:ring-1 hover:shadow-md focus:border-teal-700 focus:ring-1 focus:ring-teal-600 focus:outline-none"
+                    className="w-[200px] flex-1 pb-10 rounded bg-white ring-1 ring-gray-300 hover:ring-gray-400 hover:ring-1 hover:shadow-md focus:border-teal-700 focus:ring-1 focus:ring-teal-600 focus:outline-none"
                     placeholder="Customer name"
                     type="text"
                     name="customerName"
@@ -274,7 +356,7 @@ const InvoiceForm = () => {
                   )}
                   <input
                     required
-                    className="w-[150px] flex-1 pb-10 rounded bg-white ring-1 ring-gray-300 hover:ring-gray-400 hover:ring-1 hover:shadow-md focus:border-teal-700 focus:ring-1 focus:ring-teal-600 focus:outline-none"
+                    className="w-[200px] flex-1 pb-10 rounded bg-white ring-1 ring-gray-300 hover:ring-gray-400 hover:ring-1 hover:shadow-md focus:border-teal-700 focus:ring-1 focus:ring-teal-600 focus:outline-none"
                     placeholder="Customer name"
                     type="text"
                     name="customerName"
@@ -468,8 +550,8 @@ const InvoiceForm = () => {
           </div>
         </div>
 
-        <table className="my-4 w-full p-4 text-left">
-          <thead>
+        <table className="rounded-sm my-4 w-full p-4 text-left">
+          <thead className="rounded-sm">
             <tr className=" border-b border-gray-900/10 bg-slate-800 text-sm md:text-base">
               {showProduct ? (
                 <th 
@@ -871,12 +953,23 @@ const InvoiceForm = () => {
             <select
               id="countries" onChange={changecur} className="block w-full rounded  bg-white p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 ring-1 ring-gray-300 hover:ring-gray-400 hover:ring-1 hover:shadow-md focus:ring-1 focus:outline-none"
             >
-              <option>$</option>
-                    {options.map((option, index) => {
+              <option>dol ($)</option>
+                    {/* {options.map((option, index) => {
                         return <option key={index} >
                             {option}
                         </option>
-                    })}
+                    })} */}
+                    <option>INR (₹)</option>
+                    <option>EUR (€)</option>
+                    <option>GBP (£)</option>
+                    <option>JPY (¥)</option>
+                    <option>CHF (CHF)</option>
+                    <option>CAD (C$)</option>
+                    <option>AUD (A$)</option>
+                    <option>HKD (HK$)</option>
+                    <option>SGD (S$)</option>
+                    <option>NZD (NZ$)</option>
+                    <option>MXN (Mex$)</option>
             </select>
           </div>
           <div className="space-y-4 py-2">
