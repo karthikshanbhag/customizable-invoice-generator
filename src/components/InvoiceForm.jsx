@@ -23,7 +23,7 @@ const InvoiceForm = () => {
   const [ptval,setPtval] = useState('')
   const [poval,setPoval] = useState('')
   const options = ['Rs', '€', '£', '¥'];
-  const [curval,setCurval] = useState('')
+  const [curval,setCurval] = useState('$')
   const [image, setImage] = useState("");
   const [notescon, setNotescon] = useState("");
   const [termscon, setTermscon] = useState("");
