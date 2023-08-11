@@ -13,7 +13,7 @@ const InvoiceItem = ({ id, name, qty, price, onDeleteItem, onEdtiItem,cur }) => 
           onEditItem={(event) => onEdtiItem(event)}
           cellData={{
             className: "rounded bg-white ring-1 ring-gray-300 hover:ring-gray-400 hover:ring-1 hover:shadow-md focus:border-teal-700 focus:ring-1 focus:ring-teal-600 focus:outline-none",
-            placeholder: "Item name",
+            placeholder: "Description of service or product...",
             type: "text",
             name: "name",
             id: id,
@@ -66,7 +66,7 @@ const InvoiceItem = ({ id, name, qty, price, onDeleteItem, onEdtiItem,cur }) => 
       </td>
       <td className="flex items-center justify-center">
         <button
-          className="duration-20 rounded-md p-2 text-black shadow-sm transition-colors hover:text-blue-500"
+          className=" rounded-md p-2 text-black  transition-colors hover:text-teal-500 bg-white"
           onClick={deleteItemHandler}
         >
           {/* <h1 className="rounded-md p-2 text-black shadow-sm transition-colors duration-20 hover:text-blue-500" onClick={deleteItemHandler}>x</h1> */}

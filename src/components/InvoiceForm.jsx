@@ -20,6 +20,8 @@ const InvoiceForm = () => {
     },
   ]);
   const options = ['Rs', '€', '£', '¥'];
+  const types = ['Invoice', 'Estimate', 'Quote', 'Receipt'];
+  // const options = [{value:'Rs',label:'India'},{value:'€',label:'€'},{value:'£',label:'£'},{value:'¥',label:'¥'}]
   const [stval,setStval] = useState('')
   const [ptval,setPtval] = useState('')
   const [poval,setPoval] = useState('')
@@ -27,8 +29,9 @@ const InvoiceForm = () => {
   const [image, setImage] = useState("");
   const [notescon, setNotescon] = useState("");
   const [termscon, setTermscon] = useState("");
+  const [showship, setShowship] = useState(false);
   const [showDiscount, setShowDiscount] = useState(false);
-  const [showTax, setShowTax] = useState(false);
+  const [showTax, setShowTax] = useState(true);
   const [notes, setNotes] = useState("Notes");
   const [terms, setTerms] = useState("Terms");
   const [showNotes, setShowNotes] = useState(false);
@@ -57,10 +60,12 @@ const InvoiceForm = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [discount, setDiscount] = useState("");
   const [tax, setTax] = useState("");
+  const [shiping, setShiping] = useState("");
   const [invoiceNumber, setInvoiceNumber] = useState(1);
   const [cashierName, setCashierName] = useState("");
   const [customerName, setCustomerName] = useState("");
   const [invoice, setInvoice] = useState("Invoice");
+  const [invoiceType, setInvoiceType] = useState("Invoice");
   const [items, setItems] = useState([
     {
       id: uid(6),
@@ -118,6 +123,11 @@ const InvoiceForm = () => {
     setTax("");
   };
 
+  const shipingremove = () => {
+    setShowship(false);
+    setShiping("");
+  };
+
   const imagefunc = (event) => {
     const selectedFile = event.target.files[0];
     if (selectedFile) {
@@ -131,6 +141,9 @@ const InvoiceForm = () => {
     console.log(curval)
   }
 
+  const changetype = (event) =>{
+    setInvoiceType(event.target.value)
+  }
   const edtiItemHandler = (event) => {
     const editedItem = {
       id: event.target.id,
@@ -157,7 +170,7 @@ const InvoiceForm = () => {
   }, 0);
   const taxRate = (tax * subtotal) / 100;
   const discountRate = (discount * subtotal) / 100;
-  const total = subtotal - discountRate + taxRate;
+  const total = subtotal - discountRate + taxRate+shiping;
 
   return (
     <form
@@ -457,9 +470,10 @@ const InvoiceForm = () => {
 
         <table className="my-4 w-full p-4 text-left">
           <thead>
-            <tr className="border-b border-gray-900/10 bg-slate-800 text-sm md:text-base">
+            <tr className=" border-b border-gray-900/10 bg-slate-800 text-sm md:text-base">
               {showProduct ? (
-                <th>
+                <th 
+                style={{ paddingLeft: "3px" }} >
                   <input
                     className="h-auto bg-slate-800 p-0 font-bold uppercase text-white"
                     type="text"
@@ -472,6 +486,7 @@ const InvoiceForm = () => {
               ) : (
                 <th
                   onClick={() => setShowProduct(true)}
+                  style={{ paddingLeft: "3px" }}
                   className="cursor-pointer content-start bg-slate-800 uppercase text-white hover:shadow-md"
                 >
                   {product}
@@ -656,7 +671,7 @@ const InvoiceForm = () => {
                       onChange={(event) => setDiscount(event.target.value)}
                     />
                     <button
-                      className="duration-20 rounded-md p-2 text-black shadow-sm transition-colors hover:text-teal-600"
+                      className="duration-20 rounded-md p-2  text-black transition-colors hover:text-teal-600 "
                       onClick={discountremove}
                     >
                       <svg
@@ -709,7 +724,7 @@ const InvoiceForm = () => {
                       onChange={(event) => setTax(event.target.value)}
                     />
                     <button
-                      className="duration-20 rounded-md p-2 text-black shadow-sm transition-colors hover:text-teal-600"
+                      className="duration-20 rounded-md p-2 text-black transition-colors hover:text-teal-600 "
                       onClick={taxremove}
                     >
                       <svg
@@ -739,6 +754,57 @@ const InvoiceForm = () => {
                   +Tax
                 </span>
               )}
+              {/* {showship ? (
+                <div className="space-y-2">
+                  <label
+                    className="text-sm font-bold md:text-base"
+                    htmlFor="tax"
+                  >
+                    Shipping
+                  </label>
+                  <div className="flex items-center">
+                    <input
+                      className="w-full rounded bg-white ring-1 ring-gray-300 hover:ring-gray-400 hover:ring-1 hover:shadow-md focus:border-teal-700 focus:ring-1 focus:ring-teal-600 focus:outline-none"
+                      type="number"
+                      name="tax"
+                      id="tax"
+                      min="0.01"
+                      step="0.01"
+                      placeholder="0.0"
+                      value={shiping}
+                      onChange={(event) => setShiping(event.target.value)}
+                    />
+                    <button
+                      className="duration-20 rounded-md p-2 text-black transition-colors hover:text-teal-600 "
+                      onClick={shipingremove}
+                    >
+                      <svg
+                        className="h-4 w-4 text-gray-500 hover:text-teal-500"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        {" "}
+                        <path stroke="none" d="M0 0h24v24H0z" />{" "}
+                        <line x1="18" y1="6" x2="6" y2="18" />{" "}
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <span
+                  onClick={() => setShowship(true)}
+                  className="cursor-pointer pr-5 text-teal-600"
+                >
+                  +Shipping
+                </span>
+              )} */}
             </div>
             <div className="flex w-full justify-between md:w-1/2">
               <span className="font-bold">Discount:</span>
@@ -746,12 +812,19 @@ const InvoiceForm = () => {
                 ({discount || "0"}%){curval}:{discountRate.toFixed(2)}
               </span>
             </div>
+            
             <div className="flex w-full justify-between md:w-1/2">
               <span className="font-bold">Tax:</span>
               <span>
                 ({tax || "0"}%){curval}:{taxRate.toFixed(2)}
               </span>
             </div>
+            {/* <div className="flex w-full justify-between md:w-1/2">
+              <span className="font-bold">Discount:</span>
+              <span>
+                {curval}:{shiping}
+              </span>
+            </div> */}
             <div className="flex w-full justify-between border-t border-gray-900/10 pt-2 md:w-1/2">
               <span className="font-bold">Total:</span>
               <span className="font-bold">{curval}:
@@ -763,7 +836,7 @@ const InvoiceForm = () => {
       </div>
 
       <div className="basis-1/4 bg-transparent">
-        <div className="sticky top-0 z-10 space-y-4 divide-y divide-gray-900/10 pb-8 md:pt-6 md:pl-4">
+        <div className="sticky top-0 z-10 space-y-4  pb-8 md:pt-6 md:pl-4">
           <button
             className="w-full rounded-md bg-teal-600 py-2 text-sm text-white shadow-sm hover:bg-teal-700"
             type="submit"
@@ -805,28 +878,17 @@ const InvoiceForm = () => {
                         </option>
                     })}
             </select>
-
-            {/* <div className="space-y-2">
-              <label
-                className="text-sm font-bold md:text-base"
-                htmlFor="discount"
-              >
-                Discount rate
-              </label>
-              <div className="flex items-center">
-                <input
-                  className="w-full rounded-r-none bg-white shadow-sm"
-                  type="number"
-                  name="discount"
-                  id="discount"
-                  min="0"
-                  step="0.01"
-                  placeholder="0.0"
-                  value={discount}
-                  onChange={(event) => setDiscount(event.target.value)}
-                />
-              </div>
-            </div> */}
+          </div>
+          <div className="space-y-4 py-2">
+            <label for="countries" className="text-sm font-bold md:text-base">
+              TYPE
+            </label>
+            <select
+              id="countries" onChange={changetype} className="block w-full rounded  bg-white p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 ring-1 ring-gray-300 hover:ring-gray-400 hover:ring-1 hover:shadow-md focus:ring-1 focus:outline-none"
+            >
+              <option onChange={changetype} value="Invoice">Invoice</option>
+              <option value="Estimate">Estimate</option>
+            </select>
           </div>
         </div>
       </div>
