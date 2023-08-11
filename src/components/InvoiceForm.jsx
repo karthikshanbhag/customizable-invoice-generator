@@ -256,10 +256,10 @@ const InvoiceForm = () => {
 
   return (
     <form
-      className="relative flex flex-col ring-1 ring-gray-500 px-10 md:flex-row"
+      className="relative flex flex-col  ring-gray-500 px-10 md:flex-row"
       onSubmit={reviewInvoiceHandler}
     >
-      <div className="my-6 flex-1 space-y-2  rounded-md bg-white p-4 shadow-sm sm:space-y-4 md:p-6">
+      <div className="my-6 flex-1 space-y-2  ring-1 ring-gray-300 bg-white p-4 shadow-sm sm:space-y-4 md:p-6">
         <div className="grid grid-cols-2 gap-[20.75rem]">
           <div>
             {/* image start */}
